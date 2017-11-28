@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteRule comic/([0-9]+)$ comic/get.fcgi?id=$1
+RewriteRule comic/put comic/put.fcgi
+RewriteRule comic/delete comic/delete.fcgi
+RewriteRule comic/post comic/post.fcgi
