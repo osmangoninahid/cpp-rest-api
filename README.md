@@ -20,7 +20,7 @@ sudo apt-get install libapache2-mod-fastcgi libapache2-mod-fcgid
 
 Once installed, restart the Apache2 service by calling sudo service apache2 restart.
 
-Now it’s necessary to download and install Boost. You can do it here. Download it from the official website, unpack it and call the following commands on terminal:
+Now it’s necessary to download and install [Boost](http://www.boost.org/). You can do it here. Download it from the official website, unpack it and call the following commands on terminal:
 ```
 ./boostrap
 sudo ./b2 install
@@ -40,7 +40,7 @@ Finally, install MySQL, Initialize MySQL into terminal , Create Database name `b
 sudo apt-get install MySQL-server
 mysql -u USERNAME -p
 CREATE DATABASE book_shop;
-USE comics_shop;
+USE book_shop;
 ```
 
 And finally let’s create a table for `Book`:
