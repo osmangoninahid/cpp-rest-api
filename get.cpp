@@ -30,7 +30,7 @@ void error_log(const char* msg)
   error << '[' << posix_time::second_clock::local_time() << "] " << msg << endl;
 }
 
-class PutComic : public Connector
+class GetBook : public Connector
 {
   inline void sendError(const std::string& errorMsg)
   {
@@ -53,10 +53,10 @@ class PutComic : public Connector
           sql::Statement* stmt = con->createStatement();
           try
           {
-              sql::ResultSet* res = stmt->executeQuery("SELECT name, publisher, UNIX_TIMESTAMP(date) as date, edition FROM comic WHERE id = " + parameters["id"]);
+              sql::ResultSet* res = stmt->executeQuery("SELECT name, publisher, UNIX_TIMESTAMP(date) as date, edition FROM book WHERE id = " + parameters["id"]);
               if (!res->next())
               {
-                  sendError("Could not found comic with id = " + parameters["id"]);
+                  sendError("Could not found book with id = " + parameters["id"]);
               }
               else
               {
@@ -83,7 +83,7 @@ int main()
 {
   try
   {
-      Fastcgipp::Manager<PutComic> fcgi;
+      Fastcgipp::Manager<GetBook> fcgi;
       fcgi.handler();
   }
   catch (std::exception& e)

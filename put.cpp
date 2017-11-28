@@ -30,7 +30,7 @@ void error_log(const char* msg)
   error << '[' << posix_time::second_clock::local_time() << "] " << msg << endl;
 }
 
-class PutComic : public Connector
+class PutBook : public Connector
 {
   inline void sendError(const std::string& errorMsg)
   {
@@ -77,7 +77,7 @@ class PutComic : public Connector
           }
           else
           {
-              std::string query = "UPDATE comic SET ";
+              std::string query = "UPDATE book SET ";
               for (std::map<std::string, std::string>::iterator it = columns.begin(); it != columns.end(); ++it)
               {
                   if (it != columns.begin()) query += ", ";
@@ -104,7 +104,7 @@ int main()
 {
   try
   {
-      Fastcgipp::Manager<PutComic> fcgi;
+      Fastcgipp::Manager<PutBook> fcgi;
       fcgi.handler();
   }
   catch (std::exception& e)

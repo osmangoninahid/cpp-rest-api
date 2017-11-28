@@ -30,7 +30,7 @@ void error_log(const char* msg)
   error << '[' << posix_time::second_clock::local_time() << "] " << msg << endl;
 }
 
-class PutComic : public Connector
+class DeleteBook : public Connector
 {
   inline void sendError(const std::string& errorMsg)
   {
@@ -58,7 +58,7 @@ class PutComic : public Connector
           sql::Statement* stmt = con->createStatement();
           try
           {
-              stmt->execute("DELETE FROM comic WHERE id = " + parameters["id"]);
+              stmt->execute("DELETE FROM book WHERE id = " + parameters["id"]);
               sendSuccess();
           } catch (sql::SQLException& e)
           {
@@ -74,7 +74,7 @@ int main()
 {
   try
   {
-      Fastcgipp::Manager<PutComic> fcgi;
+      Fastcgipp::Manager<DeleteBook> fcgi;
       fcgi.handler();
   }
   catch (std::exception& e)
